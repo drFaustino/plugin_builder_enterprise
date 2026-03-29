@@ -1,0 +1,26 @@
+[general]
+name=PluginBuilderEnterprise
+about=An advanced QGIS plugin generator for QGIS 4 and Qt6.
+category=Plugins
+hasProcessingProvider=False
+description=Creates complete QGIS plugin skeletons with full metadata, documentation, icon wiring, and optional components.
+icon=resources/images/icon.png
+tags=plugin,plugins,template,builder,generator
+
+author=Dr. Geol. Faustino Cetraro
+email=geol-faustino@libero.it
+homepage=https://github.com/drFaustino
+repository=https://github.com/drFaustino/plugin_builder_enterprise
+tracker=https://github.com/drFaustino/plugin_builder_enterprise/issues
+
+deprecated=False
+experimental=False
+plugin_dependencies=
+qgisMinimumVersion=4.00
+qgisMaximumVersion=4.99
+supportsQt6=True
+
+version=1.0.0
+changelog=
+  Version 1.0.0:
+    - First complete Qt6-ready release.

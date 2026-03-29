@@ -1,0 +1,40 @@
+QDialog {
+    background: #f7f7f7;
+    color: #333;
+}
+
+QFrame#Sidebar {
+    background: #ffffff;
+    border-right: 1px solid #d0d0d0;
+}
+
+QListWidget#StepList {
+    border: none;
+    background: transparent;
+}
+
+QListWidget#StepList::item {
+    padding: 10px;
+}
+
+QListWidget#StepList::item:selected {
+    background: #e6f0ff;
+    border-left: 3px solid #2a82da;
+}
+
+QPushButton {
+    background: #ffffff;
+    border: 1px solid #c8c8c8;
+    padding: 6px 14px;
+    border-radius: 4px;
+}
+
+QPushButton:hover {
+    background: #f0f0f0;
+}
+
+QPushButton:default {
+    background: #2a82da;
+    color: white;
+    border: none;
+}
