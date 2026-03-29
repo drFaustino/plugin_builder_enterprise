@@ -61,6 +61,13 @@ Summary & generation log
 Click Generate Plugin to create the full plugin structure.
 The wizard remains open after generation, allowing you to review the log or generate another plugin.
 
+## 📄 License
+This project is licensed under the GNU General Public License v3.0 (GPL‑3.0).
+You may redistribute and/or modify this software under the terms of the GPL v3 as published by the Free Software Foundation.
+A copy of the license should be included in the file LICENSE.
+If it is missing, you can obtain it at:
+https://www.gnu.org/licenses/gpl-3.0.html
+
 ## 🤝 Contributing
 Contributions, suggestions, and improvements are welcome.
 Please open an issue or submit a pull request on the project repository.
