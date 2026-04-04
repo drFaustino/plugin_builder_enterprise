@@ -1,9 +1,11 @@
-BASE_INIT = """def classFactory(iface):
-    from .plugin_main import PluginMain
+BASE_INIT = """# -*- coding: utf-8 -*-
+def classFactory(iface):
+    from .{{plugin_dir_name}} import PluginMain
     return PluginMain(iface)
 """
 
-BASE_PLUGIN_MAIN = """from qgis.PyQt import QtWidgets
+BASE_PLUGIN_MAIN = """# -*- coding: utf-8 -*-
+from qgis.PyQt import QtWidgets
 
 
 class PluginMain:
@@ -26,6 +28,7 @@ class PluginMain:
             "Plugin {{plugin_name}} is running."
         )
 """
+
 BASE_UI = """<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>{{plugin_name}}Widget</class>

@@ -72,13 +72,6 @@
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="CreateBaseUiCheckBox">
-     <property name="text">
-      <string>Create basic (empty) UI in ui/ folder</string>
-     </property>
-    </widget>
-   </item>
-   <item>
     <widget class="QFrame" name="ButtonBar">
      <property name="frameShape">
       <enum>QFrame::Shape::NoFrame</enum>
@@ -127,7 +120,7 @@
          <string>Close</string>
         </property>
        </widget>
-     </item>
+      </item>
      </layout>
     </widget>
    </item>

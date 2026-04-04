@@ -146,7 +146,7 @@ class PluginWizardDialog(QtWidgets.QDialog):
         options = self.pages[3].get_options()
 
         # 2. Sovrascrivi create_ui con la checkbox principale (se serve)
-        options["create_ui"] = self.ui.CreateBaseUiCheckBox.isChecked()
+        # options["create_ui"] = self.ui.CreateBaseUiCheckBox.isChecked()
 
         # 3. Percorsi
         paths = {

@@ -73,14 +73,7 @@ class Ui_WizardDialog(object):
 
         self.mainLayout.addWidget(self.MainFrame)
 
-        # ─────────────────────────────────────────────
-        # EXTRA OPTION: CREATE BASE UI
-        # ─────────────────────────────────────────────
-        self.CreateBaseUiCheckBox = QtWidgets.QCheckBox(WizardDialog)
-        self.CreateBaseUiCheckBox.setObjectName("CreateBaseUiCheckBox")
-        self.CreateBaseUiCheckBox.setText("Create basic (empty) UI in ui/ folder")
-        self.mainLayout.addWidget(self.CreateBaseUiCheckBox)
-
+       
         # ─────────────────────────────────────────────
         # BUTTON BAR
         # ─────────────────────────────────────────────

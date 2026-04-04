@@ -6,6 +6,31 @@ and this project adheres to **Semantic Versioning**.
 
 ---
 
+## [1.1.0] – 2026‑04‑04
+### Added
+- Added `plugin_dir_name` to the generator context to ensure correct template rendering.
+- Automatic generation of a valid `__init__.py` for each plugin, using the slugified plugin name.
+- Improved summary page with clearer reporting of selected options.
+- Enhanced internal documentation for generator and wizard components.
+
+### Changed
+- Updated `BASE_INIT` template with correct indentation and variable substitution.
+- Cleaned and reorganized wizard UI for better clarity and UX.
+- Improved metadata validation and consistency across pages.
+- Updated internal file structure for better maintainability.
+
+### Removed
+- Removed deprecated checkbox **“Create basic (empty) UI in ui/ folder”** from the wizard.
+- Eliminated duplicate UI generation logic in `finish_and_generate()`.
+
+### Fixed
+- Fixed incorrect import path in generated `__init__.py`.
+- Fixed missing variable substitution in templates.
+- Fixed plugin generation errors caused by orphaned UI references.
+- Fixed inconsistent naming between wizard options and generator logic.
+
+---
+
 ## [1.0.0] – 2026‑03‑29
 ### Added
 - Initial release of **Plugin Builder Enterprise**.
@@ -28,7 +53,7 @@ and this project adheres to **Semantic Versioning**.
 - Wizard remains open after generation; added **Close** button.
 
 ### Fixed
-- Correct file naming for `<plugin>_main.py` using slugified plugin name.
+- Correct file naming for `<plugin>.py` using slugified plugin name.
 - Improved folder creation logic and error handling.
 
 ---

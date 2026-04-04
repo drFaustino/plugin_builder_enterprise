@@ -9,9 +9,9 @@ tags=plugin,plugins,template,builder,generator
 
 author=Dr. Geol. Faustino Cetraro
 email=geol-faustino@libero.it
-homepage=https://github.com/drFaustino
+homepage=https://github.com/drFaustino/plugin_builder_enterprise
 repository=https://github.com/drFaustino/plugin_builder_enterprise
-tracker=https://github.com/drFaustino/plugin_builder_enterprise/issues
+tracker=https://github.com/drFaustino/plugin_builder_enterprise
 
 deprecated=False
 experimental=False
@@ -20,7 +20,15 @@ qgisMinimumVersion=4.00
 qgisMaximumVersion=4.99
 supportsQt6=True
 
-version=1.0.0
+version=1.1.0
 changelog=
+  Version 1.1.0:
+    - Added plugin_dir_name to generator context.
+    - Updated BASE_INIT template with correct indentation and variable substitution.
+    - Removed deprecated UI checkbox and cleaned wizard logic.
+    - Improved metadata validation and internal consistency.
+    - Fixed missing variable substitution in templates.
+    - Fixed incorrect import path in generated __init__.py.
+
   Version 1.0.0:
     - First complete Qt6-ready release.

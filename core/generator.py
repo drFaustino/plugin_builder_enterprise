@@ -49,6 +49,7 @@ class PluginGenerator:
             "experimental": "True" if options["experimental"] else "False",
             "icon_name": options["icon_name"],
             "year": datetime.datetime.now().year,
+            "plugin_dir_name": plugin_dir_name,
         }
 
         # Base UI file
