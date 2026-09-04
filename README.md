@@ -71,3 +71,7 @@ https://www.gnu.org/licenses/gpl-3.0.html
 ## 🤝 Contributing
 Contributions, suggestions, and improvements are welcome.
 Please open an issue or submit a pull request on the project repository.
+
+<img width="905" height="826" alt="img2" src="https://github.com/user-attachments/assets/87d366cd-2f07-4a09-801c-2969e34216de" />
+
+<img width="909" height="828" alt="img3" src="https://github.com/user-attachments/assets/bdce3bd8-0ceb-4bb0-9a91-1416f86bc811" />
