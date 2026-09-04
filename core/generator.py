@@ -5,6 +5,7 @@ import datetime
 from .utils import slugify, safe_mkdir
 from ..toolbelt.file_writer import FileWriter
 from . import templates
+from qgis.PyQt.QtCore import QCoreApplication
 
 
 class PluginGenerator:
@@ -12,6 +13,9 @@ class PluginGenerator:
         self.base_folder = base_folder
         self.log = []
         self.log_callback = log_callback
+
+    def tr(self, message):
+        return QCoreApplication.translate("PluginBuilderEnterprise", message)
 
     def _log(self, msg):
         self.log.append(msg)
@@ -49,6 +53,7 @@ class PluginGenerator:
             "experimental": "True" if options["experimental"] else "False",
             "icon_name": options["icon_name"],
             "year": datetime.datetime.now().year,
+            "plugin_dir_name": plugin_dir_name,
         }
 
         # Base UI file
@@ -57,7 +62,7 @@ class PluginGenerator:
             safe_mkdir(ui_dir)
             ui_name = f"{plugin_dir_name}.ui"
             writer.write(os.path.join("ui", ui_name), self.render(templates.BASE_UI, ctx))
-            self._log(f"Created base UI: ui/{ui_name}")
+            self._log(self.tr(f"Created base UI: ui/{ui_name}"))
 
         # Metadata and Readme
         writer.write("metadata.txt", self.render(templates.METADATA, ctx))
@@ -76,18 +81,18 @@ class PluginGenerator:
             writer.write("CHANGELOG.md", self.render(templates.CHANGELOG, ctx))
 
         writer.write("__init__.py", self.render(templates.BASE_INIT, ctx))
-       
+
         # Main plugin file
         main_file = f"{plugin_dir_name}.py"
         writer.write(main_file, self.render(templates.BASE_PLUGIN_MAIN, ctx))
-        self._log(f"Created main plugin file: {main_file}")
+        self._log(self.tr(f"Created main plugin file: {main_file}"))
 
         # Icon
         if options["icon_path"]:
             img_dir = os.path.join(target, "resources", "images")
             safe_mkdir(img_dir)
             shutil.copy2(options["icon_path"], os.path.join(img_dir, options["icon_name"]))
-            self._log(f"Copied icon: {options['icon_name']}")
+            self._log(self.tr(f"Copied icon: {options['icon_name']}"))
 
         # i18n folder
         i18n_dir = os.path.join(target, "resources", "i18n")
@@ -97,7 +102,7 @@ class PluginGenerator:
         for lang in ["en", "it", "es", "fr"]:
             ts_name = f"{plugin_dir_name}_{lang}.ts"
             writer.write(os.path.join("resources", "i18n", ts_name), "")
-            self._log(f"Created translation file: resources/i18n/{ts_name}")
+            self._log(self.tr(f"Created translation file: resources/i18n/{ts_name}"))
 
-        self._log("Plugin generation completed.")
+        self._log(self.tr("Plugin generation completed."))
         return self.log

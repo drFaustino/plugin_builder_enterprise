@@ -1,12 +1,13 @@
 import os
-from qgis.PyQt import QtCore, QtGui, QtWidgets
-
+from qgis.PyQt import QtWidgets
+from qgis.PyQt.QtCore import QCoreApplication
 from .pages.intro_page import IntroPage
 from .pages.metadata_page import MetadataPage
 from .pages.structure_page import StructurePage
 from .pages.options_page import OptionsPage
 from .pages.summary_page import SummaryPage
 from ..core.generator import PluginGenerator
+
 
 class PluginWizardDialog(QtWidgets.QDialog):
     def __init__(self, iface=None, parent=None):
@@ -38,11 +39,11 @@ class PluginWizardDialog(QtWidgets.QDialog):
 
         # Sidebar
         self.ui.StepList.addItems([
-            "Introduction",
-            "Metadata",
-            "Structure",
-            "Options",
-            "Summary",
+            QCoreApplication.translate("PluginBuilderEnterprise", "Introduction"),
+            QCoreApplication.translate("PluginBuilderEnterprise", "Metadata"),
+            QCoreApplication.translate("PluginBuilderEnterprise", "Structure"),
+            QCoreApplication.translate("PluginBuilderEnterprise", "Options"),
+            QCoreApplication.translate("PluginBuilderEnterprise", "Summary"),
         ])
         self.ui.StepList.currentRowChanged.connect(self.ui.Stack.setCurrentIndex)
         self.ui.StepList.setCurrentRow(0)
@@ -137,7 +138,11 @@ class PluginWizardDialog(QtWidgets.QDialog):
     def finish_and_generate(self):
         save_dir = self.ui.SavePath.text().strip()
         if not save_dir:
-            QtWidgets.QMessageBox.warning(self, "Missing folder", "Please select an output folder.")
+            QtWidgets.QMessageBox.warning(
+                self,
+                QCoreApplication.translate("PluginBuilderEnterprise", "Missing folder"),
+                QCoreApplication.translate("PluginBuilderEnterprise", "Please select an output folder.")
+            )
             return
 
         # 1. Recupera metadata, struttura e opzioni
@@ -146,7 +151,7 @@ class PluginWizardDialog(QtWidgets.QDialog):
         options = self.pages[3].get_options()
 
         # 2. Sovrascrivi create_ui con la checkbox principale (se serve)
-        options["create_ui"] = self.ui.CreateBaseUiCheckBox.isChecked()
+        # options["create_ui"] = self.ui.CreateBaseUiCheckBox.isChecked()
 
         # 3. Percorsi
         paths = {
@@ -162,8 +167,9 @@ class PluginWizardDialog(QtWidgets.QDialog):
 
         QtWidgets.QMessageBox.information(
             self,
-            "Plugin generated",
-            f"Plugin '{meta['name']}' generated in:\n{save_dir}"
+            QCoreApplication.translate("PluginBuilderEnterprise", "Plugin generated"),
+            QCoreApplication.translate(
+                "PluginBuilderEnterprise",
+                "Plugin '{}' generated in:\n{}"
+            ).format(meta['name'], save_dir)
         )
-
-

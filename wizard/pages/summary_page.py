@@ -1,5 +1,6 @@
 from qgis.PyQt import QtWidgets
 
+
 class SummaryPage(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()

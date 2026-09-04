@@ -1,5 +1,7 @@
 import os
 from qgis.PyQt import QtWidgets, QtGui, QtCore
+from qgis.PyQt.QtCore import QCoreApplication
+
 
 class OptionsPage(QtWidgets.QWidget):
     def __init__(self):
@@ -10,14 +12,19 @@ class OptionsPage(QtWidgets.QWidget):
         layout.addLayout(form)
 
         info = QtWidgets.QLabel(
-            "<h3>Documentation and licensing</h3>"
-            "<p>In this section you can define how your plugin will be documented and distributed. "
-            "You may choose the license to apply, generate optional documentation files and mark the plugin as experimental. "
-            "The license determines how the plugin can be reused or modified by others. "
-            "The CHANGELOG helps track the evolution of the project over time. "
-            "You can also generate a minimal UI file to serve as a starting point for interface design, "
-            "and optionally select a custom icon that will represent your plugin in QGIS. "
-            "All selected elements will be created automatically during plugin generation.</p>"
+            "<h3>{}</h3><p>{}</p>".format(
+                QCoreApplication.translate("PluginBuilderEnterprise", "Documentation and licensing"),
+                QCoreApplication.translate(
+                    "PluginBuilderEnterprise",
+                    "In this section you can define how your plugin will be documented and distributed. "
+                    "You may choose the license to apply, generate optional documentation files and mark the plugin as experimental. "
+                    "The license determines how the plugin can be reused or modified by others. "
+                    "The CHANGELOG helps track the evolution of the project over time. "
+                    "You can also generate a minimal UI file to serve as a starting point for interface design, "
+                    "and optionally select a custom icon that will represent your plugin in QGIS. "
+                    "All selected elements will be created automatically during plugin generation."
+                )
+            )
         )
         info.setWordWrap(True)
 
@@ -63,7 +70,7 @@ class OptionsPage(QtWidgets.QWidget):
     def choose_icon(self):
         path, _ = QtWidgets.QFileDialog.getOpenFileName(
             self,
-            "Select plugin icon",
+            QCoreApplication.translate("PluginBuilderEnterprise", "Select plugin icon"),
             "",
             "Images (*.png *.jpg *.jpeg *.svg)"
         )
@@ -91,4 +98,3 @@ class OptionsPage(QtWidgets.QWidget):
             "icon_name": icon_name,
             "create_ui": self.create_ui_cb.isChecked(),
         }
-

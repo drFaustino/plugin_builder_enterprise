@@ -1,24 +1,37 @@
 import os
-from qgis.PyQt import QtCore, QtGui, QtWidgets
+from qgis.PyQt.QtCore import QCoreApplication, QSettings, QTranslator
 from qgis.PyQt.QtWidgets import QAction
 from qgis.PyQt.QtGui import QIcon
 
 from .wizard.wizard_dialog import PluginWizardDialog
 
+
 class PluginBuilderEnterprise:
     def __init__(self, iface):
         self.iface = iface
-        self.action = None
-    
+        self.plugin_dir = os.path.dirname(__file__)
+        self.translator = None
+
     def initTranslator(self):
-        locale = QtCore.QLocale.system().name()
-        translator = QtCore.QTranslator()
-        path = os.path.join(os.path.dirname(__file__), "resources", "i18n")
-        if translator.load(f"plugin_builder_enterprise_{locale}.qm", path):
-            QtCore.QCoreApplication.installTranslator(translator)
+        locale = QSettings().value("locale/userLocale", "it")[0:2]
+
+        self.translator = QTranslator()
+
+        path = os.path.join(self.plugin_dir, "resources", "i18n")
+        filename = f"plugin_builder_enterprise_{locale}.qm"
+
+        print("[PBE] Loading:", os.path.join(path, filename))
+
+        if self.translator.load(filename, path):
+            QCoreApplication.installTranslator(self.translator)
+            print("[PBE] OK:", filename)
+        else:
+            print("[PBE] FAIL:", filename)
 
     def initGui(self):
-        icon_path = os.path.join(os.path.dirname(__file__), "resources", "images", "icon.png")
+        self.initTranslator()  # <--- PRIMA DI CREARE QAction
+
+        icon_path = os.path.join(self.plugin_dir, "resources", "images", "icon.png")
         icon = QIcon(icon_path)
 
         self.action = QAction(icon, self.tr("Plugin Builder Enterprise"), self.iface.mainWindow())
@@ -26,7 +39,6 @@ class PluginBuilderEnterprise:
 
         self.iface.addToolBarIcon(self.action)
         self.iface.addPluginToMenu(self.tr("&Plugin Builder Enterprise"), self.action)
-        self.initTranslator()
 
     def unload(self):
         self.iface.removeToolBarIcon(self.action)
@@ -37,4 +49,4 @@ class PluginBuilderEnterprise:
         dlg.exec()
 
     def tr(self, message):
-        return QtCore.QCoreApplication.translate("PluginBuilderEnterprise", message)
+        return QCoreApplication.translate("PluginBuilderEnterprise", message)

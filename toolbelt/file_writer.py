@@ -1,5 +1,7 @@
 import os
 from ..core.utils import safe_mkdir
+from qgis.PyQt.QtCore import QCoreApplication
+
 
 class FileWriter:
     def __init__(self, base_path, log):
@@ -14,4 +16,7 @@ class FileWriter:
         safe_mkdir(os.path.dirname(path))
         with open(path, "w", encoding="utf-8") as f:
             f.write(content)
-        self.log.append(f"Created file: {rel_path}")
+        self.log.append(self.tr(f"Created file: {rel_path}"))
+
+    def tr(self, message):
+        return QCoreApplication.translate("PluginBuilderEnterprise", message)

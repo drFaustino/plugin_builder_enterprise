@@ -1,4 +1,6 @@
 from qgis.PyQt import QtWidgets
+from qgis.PyQt.QtCore import QCoreApplication
+
 
 class StructurePage(QtWidgets.QWidget):
     def __init__(self):
@@ -7,13 +9,18 @@ class StructurePage(QtWidgets.QWidget):
         layout = QtWidgets.QVBoxLayout(self)
 
         info = QtWidgets.QLabel(
-            "<h3>Plugin structure</h3>"
-            "<p>In this section you can choose which components will be included in your plugin. "
-            "The base plugin provides the essential framework and is recommended in almost all cases. "
-            "A Processing provider allows you to expose algorithms in the QGIS Processing Toolbox. "
-            "A DockWidget adds a dockable panel inside the QGIS interface, ideal for tools that require persistent controls. "
-            "A Map Tool enables interactive actions directly on the map canvas, useful for drawing, selecting or inspecting features. "
-            "Select only the components you need; the wizard will automatically generate all the required files and structure.</p>"
+            "<h3>{}</h3><p>{}</p>".format(
+                QCoreApplication.translate("PluginBuilderEnterprise", "Plugin structure"),
+                QCoreApplication.translate(
+                    "PluginBuilderEnterprise",
+                    "In this section you can choose which components will be included in your plugin. "
+                    "The base plugin provides the essential framework and is recommended in almost all cases. "
+                    "A Processing provider allows you to expose algorithms in the QGIS Processing Toolbox. "
+                    "A DockWidget adds a dockable panel inside the QGIS interface, ideal for tools that require persistent controls. "
+                    "A Map Tool enables interactive actions directly on the map canvas, useful for drawing, selecting or inspecting features. "
+                    "Select only the components you need; the wizard will automatically generate all the required files and structure."
+                )
+            )
         )
         info.setWordWrap(True)
 

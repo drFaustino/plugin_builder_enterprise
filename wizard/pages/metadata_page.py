@@ -1,4 +1,6 @@
 from qgis.PyQt import QtWidgets, QtCore, QtGui
+from qgis.PyQt.QtCore import QCoreApplication
+
 
 class MetadataPage(QtWidgets.QWidget):
     def __init__(self):
@@ -7,8 +9,10 @@ class MetadataPage(QtWidgets.QWidget):
         layout = QtWidgets.QFormLayout(self)
 
         info = QtWidgets.QLabel(
-            "<h3>Plugin metadata</h3>"
-            "<p>These fields define how your plugin appears in QGIS and in its metadata.</p>"
+            "<h3>{}</h3><p>{}</p>".format(
+                QCoreApplication.translate("PluginBuilderEnterprise", "Plugin metadata"),
+                QCoreApplication.translate("PluginBuilderEnterprise", "These fields define how your plugin appears in QGIS and in its metadata.")
+            )
         )
         info.setWordWrap(True)
         layout.addRow(info)
@@ -37,7 +41,12 @@ class MetadataPage(QtWidgets.QWidget):
 
         layout.addRow("Plugin name:", self.name_edit)
         layout.addRow(QtWidgets.QLabel(
-            "<i>The plugin name must start with a letter and contain only letters, numbers, and underscores.</i>"
+            "<i>{}</i>".format(
+                QCoreApplication.translate(
+                    "PluginBuilderEnterprise",
+                    "The plugin name must start with a letter and contain only letters, numbers, and underscores."
+                )
+            )
         ))
 
         layout.addRow("About (short):", self.about_edit)
